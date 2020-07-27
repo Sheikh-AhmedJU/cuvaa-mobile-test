@@ -136,7 +136,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         viewModel?.getHeaderView(for: section)
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        viewModel?.getheightForHeaderInSection(section: section) ?? 0
+        viewModel?.getHeightForHeaderInSection(section: section) ?? 0
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.001
@@ -145,7 +145,6 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         let policyCell: PolicyTableViewCell = tableView.dequeueReusableCell(for: indexPath)
         guard let cellData = viewModel?.getCellData(for: indexPath)
             else {
-                print("Its for indexPath: \(indexPath)")
                 return UITableViewCell()
         }
         policyCell.applyCellData(data: cellData)
@@ -156,9 +155,12 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc: PolicyViewController = PolicyViewController.instantiate()
-        let registrationPlate = viewModel?.getCellData(for: indexPath).first?.registrationPlate
+        let cellData = viewModel?.getCellData(for: indexPath)
+        let registrationPlate = cellData?.first?.registrationPlate
+        let makeWithModel = cellData?.first?.vehicleMakeWithModel
+        let vehicleLogo = cellData?.first?.vehicleLogo
         let models = viewModel?.getAllPolicies(for: registrationPlate) ?? []
-        let policyViewModel = PolicyViewModel(policies: models)
+        let policyViewModel = PolicyViewModel(policies: models, registrationPlate: registrationPlate, makeWithModel: makeWithModel, vehicleLogo: vehicleLogo)
         vc.viewModel = policyViewModel
         navigationController?.pushViewController(vc, animated: true)
     }

@@ -58,48 +58,8 @@ public enum AppAssets{
     }
 }
 
-public enum AppSegue{
-    case policy
-    var identifier: String {
-        switch self {
-        case .policy:
-            return "showPolicy"
-        }
-    }
-}
-
 public enum NavigationButtonPosition {
     case left
     case right
 }
 
-func getRemainingTime(endDate: String?, startDate: String? = nil)->String {
-    var result = ""
-    guard let endDate = endDate else {return "" }
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-    guard let eDate = formatter.date(from: endDate)
-        else { return "" }
-    var cDate = Date()
-    if let startDate = startDate, let sDate = formatter.date(from: startDate) {
-        cDate = sDate
-    }
-    var difference: Int = 0
-    if startDate == nil {
-       difference = Calendar.current.dateComponents([.minute], from: cDate, to: eDate).minute ?? 0
-    } else {
-    difference = Calendar.current.dateComponents([.minute], from: cDate, to: eDate).minute ?? 0
-    }
-    var minute = difference
-    let day = minute / (60*24)
-    minute -= day * (60 * 24)
-    let hour = minute / 60
-    minute -= hour * 60
-    let dayString = day > 0 ? day.inWords(timeComponent: .day) : ""
-    let hourString = hour > 0 ? hour.inWords(timeComponent: .hour) : ""
-    let minuteString = minute > 0 ? minute.inWords(timeComponent: .minute) : ""
-    result = [dayString, hourString, minuteString].filter({
-        !$0.isEmpty
-    }).joined(separator: ", ")
-    return result
-}

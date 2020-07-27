@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,17 +12,29 @@
 		4803822B24CAFE3700554F51 /* RecieptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4803822A24CAFE3700554F51 /* RecieptViewModel.swift */; };
 		4803822E24CB5D2500554F51 /* ReceiptPriceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4803822C24CB5D2500554F51 /* ReceiptPriceTableViewCell.swift */; };
 		4803822F24CB5D2500554F51 /* ReceiptPriceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4803822D24CB5D2500554F51 /* ReceiptPriceTableViewCell.xib */; };
+		4803823124CBE83600554F51 /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4803823024CBE83600554F51 /* CircularProgressBar.swift */; };
+		4821D79924CC736C00C0FD3E /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4821D79824CC736C00C0FD3E /* RealmSwift */; };
+		4821D79D24CD9CD800C0FD3E /* PolicyDTOModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4821D79C24CD9CD800C0FD3E /* PolicyDTOModel.swift */; };
+		4821D7A124CE40C800C0FD3E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4821D7A024CE40C800C0FD3E /* DataManager.swift */; };
+		4821D7A424CE410C00C0FD3E /* BaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4821D7A324CE410C00C0FD3E /* BaseRepository.swift */; };
+		4821D7A624CE412A00C0FD3E /* PolicyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4821D7A524CE412A00C0FD3E /* PolicyRepository.swift */; };
+		4821D7A924CE415300C0FD3E /* RealmProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4821D7A824CE415300C0FD3E /* RealmProvider.swift */; };
+		4821D7AC24CE418400C0FD3E /* Storable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4821D7AB24CE418400C0FD3E /* Storable.swift */; };
+		4821D7AE24CE41B100C0FD3E /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4821D7AD24CE41B100C0FD3E /* Mappable.swift */; };
+		4821D7B024CE41DE00C0FD3E /* Object+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4821D7AF24CE41DE00C0FD3E /* Object+extension.swift */; };
+		4821D7B624CEC53200C0FD3E /* PolicyRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4821D7B524CEC53200C0FD3E /* PolicyRepoTest.swift */; };
+		4821D7BC24CEDD0300C0FD3E /* HomeViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4821D7BB24CEDD0300C0FD3E /* HomeViewModelTest.swift */; };
+		4821D7BF24CF5E2800C0FD3E /* HelperFunctionalitiesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4821D7BE24CF5E2800C0FD3E /* HelperFunctionalitiesTest.swift */; };
+		4821D7C224CF63DE00C0FD3E /* UIViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4821D7C124CF63DE00C0FD3E /* UIViewTest.swift */; };
 		482814F724C07B4D008396A8 /* NibBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482814F624C07B4D008396A8 /* NibBased.swift */; };
 		482814F924C07B6C008396A8 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482814F824C07B6C008396A8 /* Reusable.swift */; };
 		482814FB24C07B8E008396A8 /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482814FA24C07B8E008396A8 /* Storyboarded.swift */; };
-		482814FD24C07EC0008396A8 /* PolicyEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482814FC24C07EC0008396A8 /* PolicyEventViewModel.swift */; };
 		482814FF24C0BAC9008396A8 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482814FE24C0BAC9008396A8 /* String+extension.swift */; };
 		4870D48024C9B903005630E8 /* ActivePolicyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4870D47E24C9B903005630E8 /* ActivePolicyTableViewCell.swift */; };
 		4870D48124C9B903005630E8 /* ActivePolicyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4870D47F24C9B903005630E8 /* ActivePolicyTableViewCell.xib */; };
 		4870D48324C9CBA2005630E8 /* PolicyEventVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4870D48224C9CBA2005630E8 /* PolicyEventVM.swift */; };
 		48834B2624BFACB8002F4C3A /* UIColor+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48834B2524BFACB8002F4C3A /* UIColor+extension.swift */; };
 		48834B2824BFBB82002F4C3A /* UIFont+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48834B2724BFBB82002F4C3A /* UIFont+extension.swift */; };
-		48834B2E24BFD6FD002F4C3A /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48834B2D24BFD6FD002F4C3A /* UIImage+extension.swift */; };
 		48834B3224BFF268002F4C3A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48834B3124BFF268002F4C3A /* HomeViewModel.swift */; };
 		48834B3424BFF3D1002F4C3A /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48834B3324BFF3D1002F4C3A /* SpinnerViewController.swift */; };
 		48834B3724BFFE8C002F4C3A /* PolicyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48834B3524BFFE8C002F4C3A /* PolicyTableViewCell.swift */; };
@@ -31,15 +43,13 @@
 		48CDD02C24BF6E15003DF7A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CDD02B24BF6E15003DF7A7 /* AppDelegate.swift */; };
 		48CDD02E24BF6E15003DF7A7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CDD02D24BF6E15003DF7A7 /* SceneDelegate.swift */; };
 		48CDD03324BF6E15003DF7A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48CDD03124BF6E15003DF7A7 /* Main.storyboard */; };
-		48CDD03624BF6E15003DF7A7 /* App.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 48CDD03424BF6E15003DF7A7 /* App.xcdatamodeld */; };
 		48CDD03824BF6E19003DF7A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48CDD03724BF6E19003DF7A7 /* Assets.xcassets */; };
 		48CDD03B24BF6E19003DF7A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48CDD03924BF6E19003DF7A7 /* LaunchScreen.storyboard */; };
-		48CDD04624BF6E19003DF7A7 /* AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CDD04524BF6E19003DF7A7 /* AppTests.swift */; };
 		48CDD05624BF7327003DF7A7 /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 48CDD05524BF7327003DF7A7 /* SF-Pro-Text-Bold.otf */; };
 		48CDD05824BF737F003DF7A7 /* SF-Pro-Display-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 48CDD05724BF737F003DF7A7 /* SF-Pro-Display-Light.otf */; };
 		48CDD05A24BF7391003DF7A7 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 48CDD05924BF7391003DF7A7 /* SF-Pro-Display-Regular.otf */; };
 		48CDD05C24BF739F003DF7A7 /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 48CDD05B24BF739F003DF7A7 /* SF-Pro-Display-Semibold.otf */; };
-		48CDD06424BF74CC003DF7A7 /* PolicyEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CDD06324BF74CC003DF7A7 /* PolicyEventModel.swift */; };
+		48CDD06424BF74CC003DF7A7 /* Policy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CDD06324BF74CC003DF7A7 /* Policy.swift */; };
 		48CDD06624BF789A003DF7A7 /* StandardTextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CDD06524BF789A003DF7A7 /* StandardTextModel.swift */; };
 		48CDD06924BF795C003DF7A7 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CDD06824BF795C003DF7A7 /* RequestManager.swift */; };
 		48CDD06B24BF797B003DF7A7 /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CDD06A24BF797B003DF7A7 /* ReachabilityManager.swift */; };
@@ -63,7 +73,6 @@
 		48CE8C8424C4C622004F64D1 /* PolicyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CE8C8324C4C622004F64D1 /* PolicyViewModel.swift */; };
 		48CE8C8F24C4F561004F64D1 /* InitialLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CE8C8E24C4F561004F64D1 /* InitialLoadingViewController.swift */; };
 		48ED675324C1938E00C4F4DB /* Int+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED675224C1938E00C4F4DB /* Int+extension.swift */; };
-		48EDCF0A24C0749E00F645AB /* PolicyEventsDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EDCF0924C0749E00F645AB /* PolicyEventsDataViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,17 +91,28 @@
 		4803822A24CAFE3700554F51 /* RecieptViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecieptViewModel.swift; sourceTree = "<group>"; };
 		4803822C24CB5D2500554F51 /* ReceiptPriceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPriceTableViewCell.swift; sourceTree = "<group>"; };
 		4803822D24CB5D2500554F51 /* ReceiptPriceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReceiptPriceTableViewCell.xib; sourceTree = "<group>"; };
+		4803823024CBE83600554F51 /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
+		4821D79C24CD9CD800C0FD3E /* PolicyDTOModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyDTOModel.swift; sourceTree = "<group>"; };
+		4821D7A024CE40C800C0FD3E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		4821D7A324CE410C00C0FD3E /* BaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRepository.swift; sourceTree = "<group>"; };
+		4821D7A524CE412A00C0FD3E /* PolicyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyRepository.swift; sourceTree = "<group>"; };
+		4821D7A824CE415300C0FD3E /* RealmProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmProvider.swift; sourceTree = "<group>"; };
+		4821D7AB24CE418400C0FD3E /* Storable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storable.swift; sourceTree = "<group>"; };
+		4821D7AD24CE41B100C0FD3E /* Mappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mappable.swift; sourceTree = "<group>"; };
+		4821D7AF24CE41DE00C0FD3E /* Object+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Object+extension.swift"; sourceTree = "<group>"; };
+		4821D7B524CEC53200C0FD3E /* PolicyRepoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyRepoTest.swift; sourceTree = "<group>"; };
+		4821D7BB24CEDD0300C0FD3E /* HomeViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTest.swift; sourceTree = "<group>"; };
+		4821D7BE24CF5E2800C0FD3E /* HelperFunctionalitiesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctionalitiesTest.swift; sourceTree = "<group>"; };
+		4821D7C124CF63DE00C0FD3E /* UIViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewTest.swift; sourceTree = "<group>"; };
 		482814F624C07B4D008396A8 /* NibBased.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibBased.swift; sourceTree = "<group>"; };
 		482814F824C07B6C008396A8 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		482814FA24C07B8E008396A8 /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
-		482814FC24C07EC0008396A8 /* PolicyEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyEventViewModel.swift; sourceTree = "<group>"; };
 		482814FE24C0BAC9008396A8 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
 		4870D47E24C9B903005630E8 /* ActivePolicyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivePolicyTableViewCell.swift; sourceTree = "<group>"; };
 		4870D47F24C9B903005630E8 /* ActivePolicyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivePolicyTableViewCell.xib; sourceTree = "<group>"; };
 		4870D48224C9CBA2005630E8 /* PolicyEventVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyEventVM.swift; sourceTree = "<group>"; };
 		48834B2524BFACB8002F4C3A /* UIColor+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extension.swift"; sourceTree = "<group>"; };
 		48834B2724BFBB82002F4C3A /* UIFont+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+extension.swift"; sourceTree = "<group>"; };
-		48834B2D24BFD6FD002F4C3A /* UIImage+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
 		48834B3124BFF268002F4C3A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		48834B3324BFF3D1002F4C3A /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		48834B3524BFFE8C002F4C3A /* PolicyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyTableViewCell.swift; sourceTree = "<group>"; };
@@ -102,18 +122,16 @@
 		48CDD02B24BF6E15003DF7A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48CDD02D24BF6E15003DF7A7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		48CDD03224BF6E15003DF7A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		48CDD03524BF6E15003DF7A7 /* App.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = App.xcdatamodel; sourceTree = "<group>"; };
 		48CDD03724BF6E19003DF7A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48CDD03A24BF6E19003DF7A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		48CDD03C24BF6E19003DF7A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48CDD04124BF6E19003DF7A7 /* AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		48CDD04524BF6E19003DF7A7 /* AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTests.swift; sourceTree = "<group>"; };
 		48CDD04724BF6E19003DF7A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48CDD05524BF7327003DF7A7 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
 		48CDD05724BF737F003DF7A7 /* SF-Pro-Display-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Light.otf"; sourceTree = "<group>"; };
 		48CDD05924BF7391003DF7A7 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		48CDD05B24BF739F003DF7A7 /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
-		48CDD06324BF74CC003DF7A7 /* PolicyEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyEventModel.swift; sourceTree = "<group>"; };
+		48CDD06324BF74CC003DF7A7 /* Policy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Policy.swift; sourceTree = "<group>"; };
 		48CDD06524BF789A003DF7A7 /* StandardTextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardTextModel.swift; sourceTree = "<group>"; };
 		48CDD06824BF795C003DF7A7 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		48CDD06A24BF797B003DF7A7 /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
@@ -137,7 +155,6 @@
 		48CE8C8324C4C622004F64D1 /* PolicyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyViewModel.swift; sourceTree = "<group>"; };
 		48CE8C8E24C4F561004F64D1 /* InitialLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialLoadingViewController.swift; sourceTree = "<group>"; };
 		48ED675224C1938E00C4F4DB /* Int+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+extension.swift"; sourceTree = "<group>"; };
-		48EDCF0924C0749E00F645AB /* PolicyEventsDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyEventsDataViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +162,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4821D79924CC736C00C0FD3E /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +176,92 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4821D7A224CE40F800C0FD3E /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				4821D7A324CE410C00C0FD3E /* BaseRepository.swift */,
+				4821D7A524CE412A00C0FD3E /* PolicyRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		4821D7A724CE414700C0FD3E /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				4821D7A824CE415300C0FD3E /* RealmProvider.swift */,
+			);
+			path = Provider;
+			sourceTree = "<group>";
+		};
+		4821D7AA24CE417900C0FD3E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				4821D7AB24CE418400C0FD3E /* Storable.swift */,
+				4821D7AD24CE41B100C0FD3E /* Mappable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		4821D7B124CEC23E00C0FD3E /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				4821D7B324CEC3F300C0FD3E /* Model */,
+				4821D7A224CE40F800C0FD3E /* Repository */,
+				4821D7A724CE414700C0FD3E /* Provider */,
+				4821D7AA24CE417900C0FD3E /* Protocols */,
+				4821D7B224CEC26C00C0FD3E /* Manager */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		4821D7B224CEC26C00C0FD3E /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				4821D7A024CE40C800C0FD3E /* DataManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		4821D7B324CEC3F300C0FD3E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4821D79C24CD9CD800C0FD3E /* PolicyDTOModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4821D7B424CEC4D100C0FD3E /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				4821D7B524CEC53200C0FD3E /* PolicyRepoTest.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		4821D7BA24CEDCF300C0FD3E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				4821D7BB24CEDD0300C0FD3E /* HomeViewModelTest.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		4821D7BD24CF5E0C00C0FD3E /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				4821D7BE24CF5E2800C0FD3E /* HelperFunctionalitiesTest.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		4821D7C024CF63CC00C0FD3E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4821D7C124CF63DE00C0FD3E /* UIViewTest.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		4870D47D24C9B8CF005630E8 /* New Group */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,19 +290,19 @@
 		48CDD02A24BF6E15003DF7A7 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				48CDD06224BF7477003DF7A7 /* Helper */,
-				48CDD06124BF746D003DF7A7 /* Views */,
-				48CDD06024BF7460003DF7A7 /* ViewModels */,
-				48CDD05F24BF745C003DF7A7 /* Models */,
+				4821D7B124CEC23E00C0FD3E /* Persistence */,
 				48CDD05E24BF7456003DF7A7 /* Network */,
 				48CDD05024BF7072003DF7A7 /* Resources */,
+				48CDD06224BF7477003DF7A7 /* Helper */,
+				48CDD06124BF746D003DF7A7 /* Views */,
+				48CDD05F24BF745C003DF7A7 /* Models */,
+				48CDD06024BF7460003DF7A7 /* ViewModels */,
 				48CDD02B24BF6E15003DF7A7 /* AppDelegate.swift */,
 				48CDD02D24BF6E15003DF7A7 /* SceneDelegate.swift */,
 				48CDD03124BF6E15003DF7A7 /* Main.storyboard */,
 				48CDD03724BF6E19003DF7A7 /* Assets.xcassets */,
 				48CDD03924BF6E19003DF7A7 /* LaunchScreen.storyboard */,
 				48CDD03C24BF6E19003DF7A7 /* Info.plist */,
-				48CDD03424BF6E15003DF7A7 /* App.xcdatamodeld */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -206,7 +310,10 @@
 		48CDD04424BF6E19003DF7A7 /* AppTests */ = {
 			isa = PBXGroup;
 			children = (
-				48CDD04524BF6E19003DF7A7 /* AppTests.swift */,
+				4821D7C024CF63CC00C0FD3E /* View */,
+				4821D7BD24CF5E0C00C0FD3E /* Helper */,
+				4821D7BA24CEDCF300C0FD3E /* ViewModels */,
+				4821D7B424CEC4D100C0FD3E /* Persistence */,
 				48CDD04724BF6E19003DF7A7 /* Info.plist */,
 			);
 			path = AppTests;
@@ -238,7 +345,7 @@
 		48CDD05F24BF745C003DF7A7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				48CDD06324BF74CC003DF7A7 /* PolicyEventModel.swift */,
+				48CDD06324BF74CC003DF7A7 /* Policy.swift */,
 				48CDD06524BF789A003DF7A7 /* StandardTextModel.swift */,
 			);
 			path = Models;
@@ -249,8 +356,6 @@
 			children = (
 				48834B3124BFF268002F4C3A /* HomeViewModel.swift */,
 				48CE8C8324C4C622004F64D1 /* PolicyViewModel.swift */,
-				482814FC24C07EC0008396A8 /* PolicyEventViewModel.swift */,
-				48EDCF0924C0749E00F645AB /* PolicyEventsDataViewModel.swift */,
 				4870D48224C9CBA2005630E8 /* PolicyEventVM.swift */,
 				4803822A24CAFE3700554F51 /* RecieptViewModel.swift */,
 			);
@@ -277,12 +382,12 @@
 				48CDD08C24BFA364003DF7A7 /* Result.swift */,
 				48834B2524BFACB8002F4C3A /* UIColor+extension.swift */,
 				48834B2724BFBB82002F4C3A /* UIFont+extension.swift */,
-				48834B2D24BFD6FD002F4C3A /* UIImage+extension.swift */,
 				482814F624C07B4D008396A8 /* NibBased.swift */,
 				482814F824C07B6C008396A8 /* Reusable.swift */,
 				482814FA24C07B8E008396A8 /* Storyboarded.swift */,
 				482814FE24C0BAC9008396A8 /* String+extension.swift */,
 				4897AABC24CA6C9400E58236 /* UIView+extension.swift */,
+				4821D7AF24CE41DE00C0FD3E /* Object+extension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -339,6 +444,7 @@
 			children = (
 				48CDD09224BFA617003DF7A7 /* ButtonWithImage.swift */,
 				48834B3324BFF3D1002F4C3A /* SpinnerViewController.swift */,
+				4803823024CBE83600554F51 /* CircularProgressBar.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -393,6 +499,9 @@
 			dependencies = (
 			);
 			name = App;
+			packageProductDependencies = (
+				4821D79824CC736C00C0FD3E /* RealmSwift */,
+			);
 			productName = App;
 			productReference = 48CDD02824BF6E15003DF7A7 /* App.app */;
 			productType = "com.apple.product-type.application";
@@ -443,6 +552,9 @@
 				Base,
 			);
 			mainGroup = 48CDD01F24BF6E15003DF7A7;
+			packageReferences = (
+				4821D79724CC736C00C0FD3E /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+			);
 			productRefGroup = 48CDD02924BF6E15003DF7A7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -488,21 +600,25 @@
 			files = (
 				48834B3224BFF268002F4C3A /* HomeViewModel.swift in Sources */,
 				482814F724C07B4D008396A8 /* NibBased.swift in Sources */,
-				482814FD24C07EC0008396A8 /* PolicyEventViewModel.swift in Sources */,
 				48CDD06B24BF797B003DF7A7 /* ReachabilityManager.swift in Sources */,
 				48CDD08524BFA194003DF7A7 /* PolicyEventResource.swift in Sources */,
 				48CDD08924BFA2AF003DF7A7 /* PolicyEventService.swift in Sources */,
 				4803822824CA806B00554F51 /* PreviousPolicyTableViewCell.swift in Sources */,
+				4821D7AE24CE41B100C0FD3E /* Mappable.swift in Sources */,
 				48834B2624BFACB8002F4C3A /* UIColor+extension.swift in Sources */,
+				4821D79D24CD9CD800C0FD3E /* PolicyDTOModel.swift in Sources */,
+				4821D7B024CE41DE00C0FD3E /* Object+extension.swift in Sources */,
+				4821D7AC24CE418400C0FD3E /* Storable.swift in Sources */,
 				48834B2824BFBB82002F4C3A /* UIFont+extension.swift in Sources */,
 				482814FF24C0BAC9008396A8 /* String+extension.swift in Sources */,
 				48CDD07724BF7A29003DF7A7 /* URLParameterEncoder.swift in Sources */,
 				48ED675324C1938E00C4F4DB /* Int+extension.swift in Sources */,
-				48CDD06424BF74CC003DF7A7 /* PolicyEventModel.swift in Sources */,
+				48CDD06424BF74CC003DF7A7 /* Policy.swift in Sources */,
+				4803823124CBE83600554F51 /* CircularProgressBar.swift in Sources */,
 				48CDD09524BFA95C003DF7A7 /* HomeViewController.swift in Sources */,
 				48834B3724BFFE8C002F4C3A /* PolicyTableViewCell.swift in Sources */,
 				4870D48324C9CBA2005630E8 /* PolicyEventVM.swift in Sources */,
-				48834B2E24BFD6FD002F4C3A /* UIImage+extension.swift in Sources */,
+				4821D7A924CE415300C0FD3E /* RealmProvider.swift in Sources */,
 				482814F924C07B6C008396A8 /* Reusable.swift in Sources */,
 				48CDD06E24BF79BB003DF7A7 /* HTTPTask.swift in Sources */,
 				4870D48024C9B903005630E8 /* ActivePolicyTableViewCell.swift in Sources */,
@@ -512,10 +628,8 @@
 				48CDD09324BFA617003DF7A7 /* ButtonWithImage.swift in Sources */,
 				48CDD08D24BFA364003DF7A7 /* Result.swift in Sources */,
 				48CDD09924BFA97B003DF7A7 /* ReceiptViewController.swift in Sources */,
-				48CDD03624BF6E15003DF7A7 /* App.xcdatamodeld in Sources */,
 				48CE8C8424C4C622004F64D1 /* PolicyViewModel.swift in Sources */,
 				48CDD02C24BF6E15003DF7A7 /* AppDelegate.swift in Sources */,
-				48EDCF0A24C0749E00F645AB /* PolicyEventsDataViewModel.swift in Sources */,
 				48834B3424BFF3D1002F4C3A /* SpinnerViewController.swift in Sources */,
 				48CDD08B24BFA337003DF7A7 /* AppErrors.swift in Sources */,
 				48CDD07524BF7A13003DF7A7 /* ParameterEncoding.swift in Sources */,
@@ -528,8 +642,11 @@
 				48CDD09724BFA970003DF7A7 /* PolicyViewController.swift in Sources */,
 				48CDD07924BF7A44003DF7A7 /* JSONParameterEncoder.swift in Sources */,
 				48CDD06624BF789A003DF7A7 /* StandardTextModel.swift in Sources */,
+				4821D7A624CE412A00C0FD3E /* PolicyRepository.swift in Sources */,
+				4821D7A124CE40C800C0FD3E /* DataManager.swift in Sources */,
 				48CE8C8F24C4F561004F64D1 /* InitialLoadingViewController.swift in Sources */,
 				4897AABD24CA6C9400E58236 /* UIView+extension.swift in Sources */,
+				4821D7A424CE410C00C0FD3E /* BaseRepository.swift in Sources */,
 				48CDD08724BFA24D003DF7A7 /* StandardTextResource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -538,7 +655,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48CDD04624BF6E19003DF7A7 /* AppTests.swift in Sources */,
+				4821D7C224CF63DE00C0FD3E /* UIViewTest.swift in Sources */,
+				4821D7BF24CF5E2800C0FD3E /* HelperFunctionalitiesTest.swift in Sources */,
+				4821D7BC24CEDD0300C0FD3E /* HomeViewModelTest.swift in Sources */,
+				4821D7B624CEC53200C0FD3E /* PolicyRepoTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,18 +920,24 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCVersionGroup section */
-		48CDD03424BF6E15003DF7A7 /* App.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				48CDD03524BF6E15003DF7A7 /* App.xcdatamodel */,
-			);
-			currentVersion = 48CDD03524BF6E15003DF7A7 /* App.xcdatamodel */;
-			path = App.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
+/* Begin XCRemoteSwiftPackageReference section */
+		4821D79724CC736C00C0FD3E /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.3.2;
+			};
 		};
-/* End XCVersionGroup section */
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4821D79824CC736C00C0FD3E /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4821D79724CC736C00C0FD3E /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 48CDD02024BF6E15003DF7A7 /* Project object */;
 }

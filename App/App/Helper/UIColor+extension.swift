@@ -19,6 +19,7 @@ enum AppColors{
     static let lightBackground = UIColor(rgb: 0xEFEDFF)
     static let veryLightBackground = UIColor(rgb: 0x5A55FF)
     static let activePolicyButtonBackground = UIColor(rgb: 0x1CC686)
+    static let voidedPolicyBackgroundColor = UIColor(rgb: 0xFC2C2D)
     
     // text color
     static let darkHeader = UIColor(rgb: 0x161656)

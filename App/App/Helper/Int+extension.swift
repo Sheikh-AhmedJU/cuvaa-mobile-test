@@ -26,4 +26,19 @@ extension Int {
         guard let formattedTipAmount = formatter.string(from: amount as NSNumber) else { return ""}
         return formattedTipAmount
     }
+    func toTimeDuration()->String{
+        var result = ""
+        var minute = self
+        let day = minute / (60*24)
+        minute -= day * (60 * 24)
+        let hour = minute / 60
+        minute -= hour * 60
+        let dayString = day > 0 ? day.inWords(timeComponent: .day) : ""
+        let hourString = hour > 0 ? hour.inWords(timeComponent: .hour) : ""
+        let minuteString = minute > 0 ? minute.inWords(timeComponent: .minute) : ""
+        result = [dayString, hourString, minuteString].filter({
+            !$0.isEmpty
+        }).joined(separator: ", ")
+        return result
+    }
 }

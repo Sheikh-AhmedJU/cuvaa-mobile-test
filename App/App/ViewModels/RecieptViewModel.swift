@@ -9,21 +9,28 @@
 import Foundation
 import UIKit
 
-enum PolicyStatusTitle{
+enum PolicyStatus{
     case voided
     case active
     case expired
-    var text: String {
+    var title: String {
         switch self{
         case .active: return "This policy is still active"
         case .expired: return "This policy has expired"
         case .voided: return "This policy has been voided"
         }
     }
+    var backgroundColor: UIColor?{
+        switch self {
+        case .active: return AppColors.activePolicyButtonBackground
+        case .expired: return AppColors.darkBackground
+        case .voided: return AppColors.voidedPolicyBackgroundColor
+        }
+    }
 }
 enum ReceiptTitles{
     case premium
-    case premiumTax
+    case premiumTax 
     case adminFee
     case totalPaid
     case grandTotal
@@ -41,9 +48,10 @@ enum ReceiptTitles{
 
 class RecieptViewModel{
     private var allPolicies: [PolicyEventVM] = []
+    private var policyStatus: PolicyStatus
     init(policies: [PolicyEventVM]){
         let _policies = policies.filter {
-            !$0.timeStamp.isEmpty
+            !$0.timeStamp.isEmpty && $0.totalPaid != 0
         }.sorted{
             (lhs, rhs) in
             guard let leftDate = lhs.timeStamp.getDateAndTime(),
@@ -53,6 +61,16 @@ class RecieptViewModel{
             return leftDate < rightDate
         }
         self.allPolicies = _policies
+        guard policies.filter({ $0.isFinancialTransaction  && ($0.insurancePremium < 0) }).count > 0 else {
+            guard policies.filter({ $0.isActivePolicy}).count > 0 else {
+                policyStatus = .expired
+                return
+            }
+            policyStatus = .active
+            return
+        }
+        policyStatus = .voided
+        
     }
     // get the navigationbar tint color
     func getNavigationBarTintColor()->UIColor?{
@@ -79,25 +97,13 @@ class RecieptViewModel{
     }
     // get the policy status container view background color
     func getPolicyContainerBackgroundColor()->UIColor?{
-        return UIColor.red
+        return policyStatus.backgroundColor
     }
     // get the policy status
     func getPolicyStatusTitle()->NSAttributedString?{
-        var title: String?
         let font = AppFonts.labelFont(labelType: .tableViewHeader).font
         let color = UIColor.white
-        guard allPolicies.filter({ $0.isCancelled}).count > 0
-            else {
-                guard allPolicies.filter({ $0.isActivePolicy}).count > 0
-                    else {
-                        title = PolicyStatusTitle.expired.text
-                        return title?.getAttributedTitle(font: font, textColor: color)
-                }
-                title = PolicyStatusTitle.active.text
-                return title?.getAttributedTitle(font: font, textColor: color)
-        }
-        title = PolicyStatusTitle.voided.text
-        return title?.getAttributedTitle(font: font, textColor: color)
+        return self.policyStatus.title.getAttributedTitle(font: font, textColor: color)
     }
     // get the tableViewBackgroundColor
     func getTableViewBackgroundColor()->UIColor?{

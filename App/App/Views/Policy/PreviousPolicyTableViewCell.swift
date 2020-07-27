@@ -21,16 +21,16 @@ class PreviousPolicyTableViewCell: UITableViewCell, NibBased {
         timeLabel.attributedText = nil
         dateLabel.attributedText = nil
     }
-    func setupCell(cellData: PolicyEventVM){
-        formatTimeLabel(time: cellData.policyDuration, isCancelled: cellData.isCancelled)
+    func setupCell(cellData: PolicyEventVM, isCancelled: Bool){
+        formatTimeLabel(time: cellData.policyDuration, isCancelled: isCancelled)
         formatDateLabel(date: cellData.policyUpdateDate)
         self.accessoryType = .disclosureIndicator
     }
-    private func formatTimeLabel(time: String?, isCancelled: Bool){
-        let titleText = isCancelled ? "Voided" : time
+    private func formatTimeLabel(time: Int, isCancelled: Bool){
+        let titleText = isCancelled ? "Voided" : time.toTimeDuration()
         let font = AppFonts.labelFont(labelType: .regularInTableCell).font
         let color = isCancelled ? UIColor.red : AppColors.textColor(labelType: .headerInTableCell).color
-        timeLabel.attributedText = titleText?.getAttributedTitle(font: font, textColor: color)
+        timeLabel.attributedText = titleText.getAttributedTitle(font: font, textColor: color)
     }
     private func formatDateLabel(date: String?){
         let font = AppFonts.labelFont(labelType: .headerInImageButton).font

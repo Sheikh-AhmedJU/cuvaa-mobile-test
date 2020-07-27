@@ -10,6 +10,24 @@ import UIKit
 enum ActivePolicyButtonType{
     case policy
     case help
+    var title: String {
+        switch self {
+        case .help: return "Get help"
+        case .policy: return "Policy"
+        }
+    }
+    var icon: UIImage?{
+        switch self{
+        case .help: return UIImage(named: "help")
+        case .policy: return UIImage(named: "Icon-22")
+        }
+    }
+    var color: UIColor?{
+        switch self {
+        case .help: return UIColor.red
+        case .policy: return AppColors.textColor(labelType: .regularInTableCell).color
+        }
+    }
 }
 class ActivePolicyTableViewCell: UITableViewCell, NibBased {
     
@@ -18,7 +36,7 @@ class ActivePolicyTableViewCell: UITableViewCell, NibBased {
     @IBOutlet weak var policyLabel: UILabel!
     
     @IBOutlet weak var remainingTimeView: UIView!
-    @IBOutlet weak var graphicRemainingTimeView: UIView!
+    @IBOutlet weak var circularProgressView: CircularProgressView!
     @IBOutlet weak var textRemainingTimeView: UIView!
     @IBOutlet weak var remainingTimeLabel: UILabel!
     
@@ -36,9 +54,12 @@ class ActivePolicyTableViewCell: UITableViewCell, NibBased {
         self.contentView.backgroundColor = AppColors.lightBackground
         mainView.layer.cornerRadius = 10.0
         remainingTimeView.backgroundColor = UIColor.clear
+        circularProgressView.progressClr = UIColor.clear
+        circularProgressView.trackClr = UIColor.clear
     }
     func setupCell(cellData: PolicyEventVM){
         formatPolicyLabel(title: "Active policy")
+        formatRemainingTimeViews(totalDuration: cellData.policyDuration, remainingTime: cellData.policyRemainingDuration)
         formatRemainingTimeLabel(time: cellData.remainingTime)
         formatButton(buttonType: .help)
         formatButton(buttonType: .policy)
@@ -51,10 +72,10 @@ class ActivePolicyTableViewCell: UITableViewCell, NibBased {
     private func formatRemainingTimeLabel(time: String){
         remainingTimeLabel.numberOfLines = 2
         var font = AppFonts.labelFont(labelType: .tableViewHeader).font
-        var color = AppColors.textColor(labelType: .regularInTableCell).color
+        var color = AppColors.textColor(labelType: .headerInTableCell).color
         let firstLine = "Time remaining".getAttributedTitle(font: font, textColor: color)
-        font = AppFonts.labelFont(labelType: .subHeaderInTableCell).font
-        color = AppColors.textColor(labelType: .subHeaderInTableCell).color
+        font = AppFonts.labelFont(labelType: .headerInTableCell).font
+        color = AppColors.textColor(labelType: .regularInTableCell).color
         let secondLine = time.getAttributedTitle(font: font, textColor: color)
         guard let firstString = firstLine, let secondString = secondLine else { return }
         let result = NSMutableAttributedString()
@@ -63,31 +84,26 @@ class ActivePolicyTableViewCell: UITableViewCell, NibBased {
         result.append(secondString)
         remainingTimeLabel.attributedText = result
     }
+    private func formatRemainingTimeViews(totalDuration: Int, remainingTime: Int){
+        formatRemainingTimeLabel(time: remainingTime.toTimeDuration())
+        circularProgressView.trackClr = AppColors.lightBackground
+        circularProgressView.progressClr = AppColors.textColor(labelType: .regularInTableCell).color ?? UIColor.blue
+        let remainingTimeInPercentage = Float(remainingTime) / Float(totalDuration)
+        circularProgressView.setProgressWithAnimation(duration: 0.3, value: 1.0 - remainingTimeInPercentage)
+    }
     private func formatButton(buttonType: ActivePolicyButtonType){
-        var title: String?
-        var icon: UIImage?
-        var color: UIColor?
         var button: ButtonWithImage?
         let font = AppFonts.labelFont(labelType: .headerInImageButton).font
         let backgroundColor = AppColors.lightBackground
-        
         switch buttonType {
         case .help:
-            title = "Get help"
-            icon = UIImage(named: "help")
-            color = UIColor.red
             button = helpButtonContainerView
         case .policy:
-            title = "Policy"
-            icon = UIImage(named: "Icon-22")
-            color = AppColors.textColor(labelType: .regularInTableCell).color
             button = policyButtonContainerView
         }
-        
-        let attributedTitle = title?.getAttributedTitle(font: font, textColor: color)
+        let attributedTitle = buttonType.title.getAttributedTitle(font: font, textColor: buttonType.color)
         button?.setAttributedTitle(attributedTitle, for: .normal)
-        button?.setImage(icon, for: .normal)
+        button?.setImage(buttonType.icon, for: .normal)
         button?.setBackgroundColor(color: backgroundColor)
-        //policyButtonContainerView.addTarget(self, action: #selector(motorButtonPressed(sender:)), for: .touchDown)
     }
 }

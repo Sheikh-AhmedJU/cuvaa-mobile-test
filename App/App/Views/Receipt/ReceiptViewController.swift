@@ -61,17 +61,6 @@ class ReceiptViewController: UIViewController, Storyboarded {
     
 }
 extension ReceiptViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: UITableViewCell
-        guard let cellData = viewModel?.getCellData(indexPath: indexPath)
-        else {
-            return UITableViewCell()
-        }
-        let receiptCell: ReceiptPriceTableViewCell = tableView.dequeueReusableCell(for: indexPath)
-        receiptCell.setupCell(cellData: cellData)
-        cell = receiptCell
-        return cell
-    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel?.getNumberOfSections() ?? 0
@@ -90,5 +79,16 @@ extension ReceiptViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell: UITableViewCell
+        guard let cellData = viewModel?.getCellData(indexPath: indexPath)
+        else {
+            return UITableViewCell()
+        }
+        let receiptCell: ReceiptPriceTableViewCell = tableView.dequeueReusableCell(for: indexPath)
+        receiptCell.setupCell(cellData: cellData)
+        cell = receiptCell
+        return cell
     }
 }

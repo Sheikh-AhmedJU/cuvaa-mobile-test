@@ -13,12 +13,19 @@ protocol HomeViewOperations {
 }
 class HomeViewModel{
     private let service = PolicyEventService()
-    //private var _allEvents: PolicyEvents?
+    private var _allEvents: PolicyEvents?
     private var _allViewModels: [PolicyEventVM] = []
     private var activePolicies: [PolicyEventVM] = []
     private var inactivePolicies: [PolicyEventVM] = []
     private var vehicleWithActiveProfiles: [String] = []
     private var vehicleWithoutActiveProfiles: [String] = []
+    let dbManager: DataBaseManager
+    let policyRepo: PolicyRepository
+    var loadFromLocalRepository: Bool = false
+    init(dbManager: DataBaseManager = RealmDataBaseManager(RealmProvider.default)){
+        self.dbManager = dbManager
+        self.policyRepo = PolicyRepository(dbManager: dbManager)
+    }
     
     //get navigationBar Color
     func getNavigationBarTintColor()->UIColor?{
@@ -68,13 +75,7 @@ class HomeViewModel{
         return AppColors.lightBackground
     }
     func getAllPolicies(for registrationPlate: String?)->[PolicyEventVM]{
-        let searchedPoliciIds = Array(Set(_allViewModels.filter {
-            $0.registrationPlate == registrationPlate
-        }
-        .compactMap { $0.policyID }))
-        let result = _allViewModels.filter({
-            searchedPoliciIds.contains($0.policyID)
-        })
+        let result = _allViewModels
         return result
     }
     func getCellData(for indexPath: IndexPath)->[PolicyEventVM] {
@@ -143,53 +144,77 @@ class HomeViewModel{
         count += inactivePolicies.count > 0 ? 1 : 0
         return count
     }
-    func getheightForHeaderInSection(section: Int)->CGFloat{
+    func getHeightForHeaderInSection(section: Int)->CGFloat{
         guard getNumberOfRowsInSection(for: section) > 0 else { return 0.001 }
         return 35
     }
 }
 extension HomeViewModel: HomeViewOperations {
     func fetchPolicies(completion: @escaping (Result<Bool, APIError>)->Void) {
+        switch loadFromLocalRepository {
+        case true :
+            self.policyRepo.getAllPolicies { (events) in
+                self.analysePolicyEvents(policyEvents: events) { (_) in
+                    completion(.success(true))
+                }
+            }
+        case false:
+            service.getPolicyEvents { [weak self] (result) in
+                guard let `self` = self else {return}
+                switch result {
+                case .success(let models):
+                    guard let policyEvents = models else {
+                        completion(.failure(.other(message: "Failed to load data")))
+                        return
+                    }
+                    self.analysePolicyEvents(policyEvents: policyEvents) { (_) in
+                        completion(.success(true))
+                        if !policyEvents.isEmpty {
+                            self.policyRepo.deleteAllPolicies()
+                            for object in policyEvents {
+                                self.policyRepo.savePolicy(policy: object)
+                            }
+                        }
+                    }
+                case .failure(let error):
+                    self.policyRepo.getAllPolicies { (events) in
+                        self.analysePolicyEvents(policyEvents: events) { (_) in
+                            completion(.success(true))
+                        }
+                    }
+                    completion(.failure(error))
+                }
+            }
+        }
         // look for local
         
         // else look for remote
-        service.getPolicyEvents { [weak self] (result) in
-            guard let `self` = self else {return}
-            switch result {
-            case .success(let models):
-                guard let policyEvents = models else {
-                    completion(.failure(.other(message: "Failed to load data")))
-                    return
-                }
-                //self._allEvents = policyEvents
-                let allViewModels = policyEvents.compactMap {
-                    PolicyEventVM(policyEventModel: $0)
-                }
-                self._allViewModels = allViewModels
-                self.vehicleWithActiveProfiles = Array(Set(allViewModels.filter({ $0.isActivePolicy})
-                    .compactMap { $0.registrationPlate}
-                    .filter({!$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-                    })))
-                
-                self.activePolicies = allViewModels.filter({
-                    self.vehicleWithActiveProfiles.contains($0.registrationPlate) && $0.isActivePolicy
-                })
-                
-                self.vehicleWithoutActiveProfiles = Array(Set(allViewModels.filter({ !$0.isActivePolicy })
-                    .compactMap { $0.registrationPlate}
-                    .filter({ !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-                    }).filter({ !self.vehicleWithActiveProfiles.contains($0)
-                    })
-                ))
-                self.inactivePolicies = allViewModels.filter({
-                    self.vehicleWithoutActiveProfiles.contains($0.registrationPlate) && !$0.isActivePolicy && !self.vehicleWithActiveProfiles.contains($0.registrationPlate)
-                })
-                completion(.success(true))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
+        
     }
-    
-    
+    private func analysePolicyEvents(policyEvents: PolicyEvents, completion: @escaping(Bool)->Void){
+        self._allEvents = policyEvents
+        let allViewModels = policyEvents.compactMap {
+            PolicyEventVM(policyEventModel: $0)
+        }
+        self._allViewModels = allViewModels
+        self.vehicleWithActiveProfiles = Array(Set(allViewModels.filter({ $0.isActivePolicy})
+            .compactMap { $0.registrationPlate}
+            .filter({!$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            })))
+        
+        self.activePolicies = allViewModels.filter({
+            self.vehicleWithActiveProfiles.contains($0.registrationPlate) && $0.isActivePolicy
+        })
+        
+        self.vehicleWithoutActiveProfiles = Array(Set(allViewModels.filter({ !$0.isActivePolicy })
+            .compactMap { $0.registrationPlate}
+            .filter({ !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            }).filter({ !self.vehicleWithActiveProfiles.contains($0)
+            })
+        ))
+        self.inactivePolicies = allViewModels.filter({
+            self.vehicleWithoutActiveProfiles.contains($0.registrationPlate) && !$0.isActivePolicy && !self.vehicleWithActiveProfiles.contains($0.registrationPlate)
+        })
+        completion(true)
+    }
 }

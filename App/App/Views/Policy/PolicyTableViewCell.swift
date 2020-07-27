@@ -22,6 +22,9 @@ class PolicyTableViewCell: UITableViewCell, NibBased {
     @IBOutlet weak var remainingTimeView: UIView!
     @IBOutlet weak var registrationView: UIView!
     @IBOutlet weak var remainingDurationLabel: UILabel!
+    
+    @IBOutlet weak var circularRemainingTimeView: CircularProgressView!
+    private var remainingTime: Double = 0
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
@@ -40,6 +43,8 @@ class PolicyTableViewCell: UITableViewCell, NibBased {
         buttonContainerView.backgroundColor = UIColor.clear
         registrationView.backgroundColor = UIColor.clear
         remainingTimeView.backgroundColor = UIColor.clear
+        circularRemainingTimeView.trackClr = UIColor.clear
+        circularRemainingTimeView.progressClr = UIColor.clear
     }
     public func applyCellData(data: [PolicyEventVM]){
         guard data.count > 0 else { return }
@@ -64,7 +69,11 @@ class PolicyTableViewCell: UITableViewCell, NibBased {
         formatRegistrationPlate(plate: registrationPlate)
         
         logoView.image = data.first?.vehicleLogo
-        guard let remainingTime = data.first?.remainingTime else { return}
+        guard let remainingTime = data.first?.remainingTime,
+            let policyDuration = data.first?.policyDuration,
+            let policyRemainingTime = data.first?.policyRemainingDuration
+            else { return}
+        self.remainingTime = Double(policyRemainingTime)  / Double(policyDuration)
         formatRemainingTime(remainingTime: remainingTime)
     }
     private func formatButton(isExtendedPolicy: Bool){
@@ -130,5 +139,9 @@ class PolicyTableViewCell: UITableViewCell, NibBased {
         let font = AppFonts.labelFont(labelType: .regularInTableCell).font
         let color = AppColors.textColor(labelType: .regularInTableCell).color
         remainingDurationLabel.attributedText = remainingTime.getAttributedTitle(font: font, textColor: color)
+        
+        circularRemainingTimeView.trackClr = AppColors.lightBackground
+        circularRemainingTimeView.progressClr = AppColors.textColor(labelType: .regularInTableCell).color ?? UIColor.blue
+        circularRemainingTimeView.setProgressWithAnimation(duration: 0.3, value: Float(1.0 - self.remainingTime))
     }
 }

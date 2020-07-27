@@ -140,7 +140,8 @@ extension PolicyViewController: UITableViewDelegate, UITableViewDataSource {
             cell = activeCell
         } else {
             let previousCell: PreviousPolicyTableViewCell = tableView.dequeueReusableCell(for: indexPath)
-            previousCell.setupCell(cellData: cellData)
+            let isCancelled = viewModel?.isPolicyCancelled(policyID: cellData.policyID) ?? false 
+            previousCell.setupCell(cellData: cellData, isCancelled: isCancelled)
             cell = previousCell
         }
         return cell

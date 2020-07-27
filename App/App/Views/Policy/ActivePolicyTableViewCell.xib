@@ -39,20 +39,21 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iPK-xT-kUa" userLabel="remainingTimeView">
-                                <rect key="frame" x="0.0" y="40.5" width="562" height="90"/>
+                                <rect key="frame" x="0.0" y="55.5" width="562" height="40"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IcS-QC-3Dr" userLabel="graphicRemainingtime">
-                                        <rect key="frame" x="20" y="0.0" width="75" height="90"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IcS-QC-3Dr" userLabel="graphicRemainingtime" customClass="CircularProgressView" customModule="App" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="0.0" width="40" height="40"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="75" id="LPA-6K-hOD"/>
+                                            <constraint firstAttribute="height" constant="40" id="1EK-KZ-Ohh"/>
+                                            <constraint firstAttribute="width" constant="40" id="LPA-6K-hOD"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wNR-3y-6LS" userLabel="textRemainingTime">
-                                        <rect key="frame" x="115" y="0.0" width="427" height="90"/>
+                                        <rect key="frame" x="65" y="10" width="477" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjw-0e-Gg7">
-                                                <rect key="frame" x="0.0" y="0.0" width="427" height="90"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="477" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -70,24 +71,21 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstItem="wNR-3y-6LS" firstAttribute="top" secondItem="iPK-xT-kUa" secondAttribute="top" id="0EZ-Lv-v5K"/>
-                                    <constraint firstItem="IcS-QC-3Dr" firstAttribute="leading" secondItem="iPK-xT-kUa" secondAttribute="leading" constant="20" id="9Xw-ae-lOb"/>
+                                    <constraint firstItem="IcS-QC-3Dr" firstAttribute="leading" secondItem="iPK-xT-kUa" secondAttribute="leading" constant="15" id="9Xw-ae-lOb"/>
                                     <constraint firstItem="IcS-QC-3Dr" firstAttribute="top" secondItem="iPK-xT-kUa" secondAttribute="top" id="Gno-vL-jJi"/>
-                                    <constraint firstAttribute="height" constant="90" id="NnG-JN-rzF"/>
                                     <constraint firstItem="wNR-3y-6LS" firstAttribute="centerY" secondItem="iPK-xT-kUa" secondAttribute="centerY" id="fKF-5U-Bwi"/>
                                     <constraint firstAttribute="bottom" secondItem="IcS-QC-3Dr" secondAttribute="bottom" id="gNR-dj-nIu"/>
-                                    <constraint firstItem="wNR-3y-6LS" firstAttribute="leading" secondItem="IcS-QC-3Dr" secondAttribute="trailing" constant="20" id="nMX-35-BBX"/>
+                                    <constraint firstItem="wNR-3y-6LS" firstAttribute="leading" secondItem="IcS-QC-3Dr" secondAttribute="trailing" constant="10" id="nMX-35-BBX"/>
                                     <constraint firstAttribute="trailing" secondItem="wNR-3y-6LS" secondAttribute="trailing" constant="20" id="nVj-i1-2uR"/>
                                     <constraint firstItem="wNR-3y-6LS" firstAttribute="centerY" secondItem="IcS-QC-3Dr" secondAttribute="centerY" id="sGm-ia-bYa"/>
                                     <constraint firstItem="IcS-QC-3Dr" firstAttribute="centerY" secondItem="iPK-xT-kUa" secondAttribute="centerY" id="wTV-kM-O5b"/>
-                                    <constraint firstAttribute="bottom" secondItem="wNR-3y-6LS" secondAttribute="bottom" id="z92-CQ-7xX"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wxW-P7-ubN" userLabel="policy and Help Button View">
-                                <rect key="frame" x="0.0" y="150.5" width="562" height="72.5"/>
+                                <rect key="frame" x="0.0" y="130.5" width="562" height="92.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="M8B-T5-gV7">
-                                        <rect key="frame" x="5" y="19" width="552" height="35"/>
+                                        <rect key="frame" x="5" y="29" width="552" height="35"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iBK-Jm-Crq" customClass="ButtonWithImage" customModule="App" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="268.5" height="35"/>
@@ -131,8 +129,8 @@
                             <constraint firstItem="wxW-P7-ubN" firstAttribute="leading" secondItem="iPK-xT-kUa" secondAttribute="leading" id="P7N-HT-aoG"/>
                             <constraint firstItem="GEG-GQ-n8q" firstAttribute="top" secondItem="tCN-TF-YI7" secondAttribute="top" constant="15" id="YMF-BT-d21"/>
                             <constraint firstAttribute="trailing" secondItem="iPK-xT-kUa" secondAttribute="trailing" id="f3w-nA-jXn"/>
-                            <constraint firstItem="wxW-P7-ubN" firstAttribute="top" secondItem="iPK-xT-kUa" secondAttribute="bottom" constant="20" id="oIO-dL-tiw"/>
-                            <constraint firstItem="iPK-xT-kUa" firstAttribute="top" secondItem="GEG-GQ-n8q" secondAttribute="bottom" constant="5" id="yGO-X6-zcT"/>
+                            <constraint firstItem="wxW-P7-ubN" firstAttribute="top" secondItem="iPK-xT-kUa" secondAttribute="bottom" constant="35" id="oIO-dL-tiw"/>
+                            <constraint firstItem="iPK-xT-kUa" firstAttribute="top" secondItem="GEG-GQ-n8q" secondAttribute="bottom" constant="20" id="yGO-X6-zcT"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -145,7 +143,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="graphicRemainingTimeView" destination="IcS-QC-3Dr" id="TtI-bq-TYg"/>
+                <outlet property="circularProgressView" destination="IcS-QC-3Dr" id="TtI-bq-TYg"/>
                 <outlet property="helpButtonContainerView" destination="9yQ-Qk-3hR" id="FjD-Ja-7C7"/>
                 <outlet property="mainView" destination="tCN-TF-YI7" id="7OI-A0-Rnc"/>
                 <outlet property="policyButtonContainerView" destination="iBK-Jm-Crq" id="esf-zh-ySd"/>

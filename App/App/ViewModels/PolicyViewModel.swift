@@ -9,12 +9,19 @@
 import Foundation
 import UIKit
 class PolicyViewModel{
+    private var registrationPlate: String?
+    private var makeWithModel: String?
+    private var vehicleLogo: UIImage?
+    private var policyIdList: [String] = []
     private var allPolicies: [PolicyEventVM] = []
-    private var activePolicies: [PolicyEventVM] = []
-    private var previousPolicies: [PolicyEventVM] = []
-    init(policies: [PolicyEventVM]){
+    private var activePolicies: [String] = []
+    private var previousPolicies: [String] = []
+    init(policies: [PolicyEventVM], registrationPlate: String?, makeWithModel: String?, vehicleLogo: UIImage?){
+        policyIdList = Array(Set(policies.filter({
+            $0.registrationPlate == registrationPlate})
+            .compactMap({ $0.policyID })))
         let _policies = policies.filter {
-            !$0.timeStamp.isEmpty
+            !$0.timeStamp.isEmpty && policyIdList.contains($0.policyID)
         }.sorted{
             (lhs, rhs) in
             guard let leftDate = lhs.timeStamp.getDateAndTime(),
@@ -23,10 +30,12 @@ class PolicyViewModel{
             }
             return leftDate > rightDate
         }
-        
+        self.registrationPlate = registrationPlate
+        self.makeWithModel = makeWithModel
+        self.vehicleLogo = vehicleLogo
         self.allPolicies = _policies
-        activePolicies = _policies.filter({ $0.isActivePolicy})
-        previousPolicies = _policies.filter({ !$0.isActivePolicy && !$0.isFinancialTransaction})
+        activePolicies = _policies.filter({ $0.isActivePolicy}).compactMap({ $0.policyID})
+        previousPolicies = _policies.filter({ !$0.isActivePolicy && !$0.isFinancialTransaction && !$0.isCancelled}).compactMap({ $0.policyID})
     }
     //get navigation Background color
     func getNavigationBarTintColor()->UIColor?{
@@ -65,7 +74,7 @@ class PolicyViewModel{
     }
     // get the logo
     func getLogoImage()->UIImage? {
-        return allPolicies.first?.vehicleLogo
+        return self.vehicleLogo
     }
     // get the background for logo
     func getLogoBackgroundColor()->UIColor?{
@@ -76,12 +85,12 @@ class PolicyViewModel{
         var font = AppFonts.labelFont(labelType: .subHeaderInTableCell).font
         var color = UIColor.white
         
-        let modelWithColor = allPolicies.first?.vehicleMakeWithModel.getAttributedTitle(font: font, textColor: color)
+        let makeWithModel = self.makeWithModel?.getAttributedTitle(font: font, textColor: color)
         
         font = AppFonts.bigRegistrationPlate
         color = UIColor.white
-        let registrationPlate = allPolicies.first?.registrationPlate.getAttributedTitle(font: font, textColor: color)
-        guard let model = modelWithColor, let plate = registrationPlate else { return nil }
+        let registrationPlate = self.registrationPlate?.getAttributedTitle(font: font, textColor: color)
+        guard let model = makeWithModel, let plate = registrationPlate else { return nil }
         let result = NSMutableAttributedString()
         result.append(model)
         result.append(NSAttributedString(string: "\n"))
@@ -110,8 +119,7 @@ class PolicyViewModel{
         
         let buttonTitle = isExtendedPolicy ? "Extend cover" : "Insure cover"
         let buttonType = isExtendedPolicy ? ButtonType.extend : ButtonType.insure
-       // button.backgroundColor = buttonType == .extend ? AppColors.buttonBackgroundColor(buttonType: .extend).color : AppColors.buttonTextColor(buttonType: .insure).color
-         button.backgroundColor =  AppColors.buttonBackgroundColor(buttonType: .extend).color
+        button.backgroundColor = buttonType == .extend ? AppColors.buttonBackgroundColor(buttonType: .extend).color : AppColors.darkBackground
         button.layer.cornerRadius = 5.0
         let font = AppFonts.buttonFont(buttonType: buttonType).font
         let color = AppColors.buttonTextColor(buttonType: .extend).color
@@ -187,17 +195,23 @@ class PolicyViewModel{
                     guard row < previousPolicies.count else {
                         return nil
                     }
-                    return previousPolicies[row]
+                    return allPolicies.filter{ $0.policyID == previousPolicies[row] && !$0.isFinancialTransaction}.first
                 }
-                return activePolicies[row]
+                return allPolicies.filter{ $0.policyID == activePolicies[row] && !$0.isFinancialTransaction}.first
             default:
-                return activePolicies[row]
+                return allPolicies.filter{ $0.policyID == activePolicies[row] && !$0.isFinancialTransaction}.first
             }
-        default: return previousPolicies[row]
+        default: return allPolicies.filter{ $0.policyID == previousPolicies[row] && !$0.isFinancialTransaction}.first
         }
     }
     func getModelsForReciept(for indexPath: IndexPath)->[PolicyEventVM]{
-        let policyID = getCellData(for: indexPath)?.policyID
-        return allPolicies.filter { $0.policyID == policyID && $0.isFinancialTransaction}
+        let cellData = getCellData(for: indexPath)
+        let policyID = cellData?.policyID
+        let isCancelled = cellData?.isCancelled ?? false
+        return isCancelled ? allPolicies.filter { $0.policyID == policyID && $0.isFinancialTransaction} :
+            allPolicies.filter { $0.policyID == policyID && ($0.isFinancialTransaction || $0.isNewPolicy) && !$0.isCancelled}
+    }
+    func isPolicyCancelled(policyID: String)->Bool{
+        return allPolicies.filter { $0.policyID == policyID}.filter { $0.isCancelled}.count > 0
     }
 }
